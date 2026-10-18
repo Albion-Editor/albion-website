@@ -1,0 +1,29 @@
+{
+  "name": "Albion IDE",
+  "short_name": "Albion",
+  "description": "The AI code editor that shows you the price first.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070C18",
+  "theme_color": "#070C18",
+  "icons": [
+    {
+      "src": "/albion-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

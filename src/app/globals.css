@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #070C18;
+  --surface: #0F172A;
+  --surface-raised: #141E33;
+  --hairline: rgba(148, 163, 184, 0.16);
+  --text-main: #E6ECF5;
+  --muted: #8EA0B8;
+  --blue-500: #2F6FED;
+  --blue-400: #5A9BFF;
+  --gold-500: #F5B700;
+  --gold-400: #FFCB3D;
+  --navy-ink: #0F172A;
+  --white: #FFFFFF;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-main);
+  font-feature-settings: "rlig" 1, "calt" 1, "tnum" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Accessible visible 2px blue focus rings */
+:focus-visible {
+  outline: 2px solid var(--blue-400);
+  outline-offset: 2px;
+}
+
+/* Hairline border helper */
+.hairline-border {
+  border: 1px solid var(--hairline);
+}
+
+/* Panel surface helper */
+.panel-surface {
+  background-color: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+}
+
+.panel-raised {
+  background-color: var(--surface-raised);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+}
+
+/* Skip to content link for accessibility */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  background: var(--blue-500);
+  color: #ffffff;
+  padding: 8px 16px;
+  z-index: 1000;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: top 0.2s ease;
+}
+
+.skip-to-content:focus {
+  top: 16px;
+}
+
+/* Respect prefers-reduced-motion everywhere */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
