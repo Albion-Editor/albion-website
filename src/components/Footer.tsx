@@ -77,10 +77,18 @@ export function Footer() {
                 href="https://x.com/albion_ide"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-muted hover:text-white transition-colors inline-flex items-center gap-1.5"
+                aria-label="Follow Albion on X (formerly Twitter)"
+                className="text-sm text-muted hover:text-white transition-colors inline-flex items-center gap-2 group"
               >
-                <span>X (@albion_ide)</span>
-                <span className="text-xs text-slate-500" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  className="w-4 h-4 fill-current text-slate-400 group-hover:text-white transition-colors"
+                >
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+                <span className="text-sm">@albion_ide</span>
+                <span className="text-xs text-slate-500 group-hover:text-slate-300" aria-hidden="true">
                   ↗
                 </span>
               </a>

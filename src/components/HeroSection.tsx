@@ -43,9 +43,9 @@ export function HeroSection() {
           <div className="lg:col-span-6 flex flex-col items-start text-left z-10">
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-control bg-surface border border-hairline mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400" aria-hidden="true" />
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
               <span className="font-mono text-xs uppercase tracking-[0.08em] text-muted font-medium">
-                ALBION IDE · v0.0.45
+                Frontier Intelligence · Sovereign Pricing
               </span>
             </div>
 
