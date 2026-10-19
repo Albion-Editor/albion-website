@@ -41,13 +41,7 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Text (Cols 1-6) */}
           <div className="lg:col-span-6 flex flex-col items-start text-left z-10">
-            {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-control bg-surface border border-hairline mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
-              <span className="font-mono text-xs uppercase tracking-[0.08em] text-muted font-medium">
-                Frontier Intelligence · Sovereign Pricing
-              </span>
-            </div>
+
 
             {/* H1 */}
             <h1 className="font-display text-4xl sm:text-5xl lg:text-[54px] font-bold text-white tracking-[-0.02em] leading-[1.05] mb-6 text-balance">
