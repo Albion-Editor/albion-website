@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { VisitorTracker } from "@/components/VisitorTracker";
 
@@ -18,9 +19,32 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Albion: The AI code editor that shows you the price first.",
+  metadataBase: new URL("https://albionide.com"),
+  title: {
+    default: "Albion — The AI Code Editor That Shows You The Price First",
+    template: "%s | Albion IDE",
+  },
   description:
-    "Albion routes your prompts through the fastest open frontier models, tracks every token in real-time, and enforces hard caps — so you're always in control of your code and your wallet. Built in Nigeria for developers everywhere.",
+    "Albion routes your prompts through the fastest open frontier models, tracks every token in real-time, and enforces hard caps. Built in Nigeria for developers everywhere. Free standalone download for Windows, macOS, and Linux.",
+  keywords: [
+    "Albion IDE",
+    "AI code editor",
+    "Cursor alternative",
+    "Windsurf alternative",
+    "open frontier models",
+    "DeepSeek V4 code editor",
+    "Qwen coder IDE",
+    "developer tools Nigeria",
+    "sovereign AI editor",
+    "predictable AI pricing",
+    "paystack AI editor",
+  ],
+  authors: [{ name: "Albion Technologies Ltd", url: "https://albionide.com" }],
+  creator: "Albion Team",
+  publisher: "Albion Technologies Ltd",
+  alternates: {
+    canonical: "https://albionide.com",
+  },
   manifest: "/site.webmanifest",
   icons: {
     icon: [
@@ -33,17 +57,37 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Albion: The AI code editor that shows you the price first.",
     description:
-      "The AI code editor that tracks every token in real-time and enforces hard caps. Routes open frontier models like DeepSeek V4 and Qwen with zero bill shock.",
+      "Routes open frontier models with real-time token tracking and hard spending caps. Download free for Windows, macOS, and Linux.",
     url: "https://albionide.com",
     siteName: "Albion IDE",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/albion-logo.svg",
+        width: 1200,
+        height: 630,
+        alt: "Albion IDE — Sovereign AI Code Editor",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Albion: The AI code editor that shows you the price first.",
-    description: "The AI code editor that tracks every token in real-time and enforces hard caps.",
+    description: "Routes open frontier models with real-time token tracking and hard spending caps.",
     creator: "@albion_ide",
+    images: ["/albion-logo.svg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -66,6 +110,7 @@ export default function RootLayout({
         </a>
         <VisitorTracker />
         {children}
+        <Analytics />
       </body>
     </html>
   );
