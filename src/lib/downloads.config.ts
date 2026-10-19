@@ -19,7 +19,7 @@ export interface PlatformDownload {
  * All download links point to the public GitHub Releases page.
  */
 const GITHUB_REPO = "Marcdev001/ALBION";
-const VERSION = "0.0.46";
+const VERSION = "0.0.47";
 
 // Use the proxy API route so downloads work for both public and private repos.
 // The proxy auto-resolves the latest release from GitHub.
