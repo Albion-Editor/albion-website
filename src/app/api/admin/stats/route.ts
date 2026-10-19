@@ -1,7 +1,12 @@
 import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase';
+import { isAuthorizedAdmin } from '@/lib/adminAuth';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  if (!isAuthorizedAdmin(request)) {
+    return NextResponse.json({ ok: false, error: 'Unauthorized: Admin passkey required' }, { status: 401 });
+  }
   try {
     const now = Date.now();
     const oneDayAgo = new Date(now - 24 * 60 * 60 * 1000).toISOString();

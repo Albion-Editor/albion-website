@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabase';
+import { isAuthorizedAdmin } from '@/lib/adminAuth';
 
 export async function POST(request: NextRequest) {
   try {
@@ -30,7 +31,10 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  if (!isAuthorizedAdmin(request)) {
+    return NextResponse.json({ ok: false, error: 'Unauthorized: Admin passkey required' }, { status: 401 });
+  }
   try {
     const { data, error } = await supabaseAdmin
       .from('user_feedback')
@@ -75,6 +79,9 @@ export async function GET() {
 }
 
 export async function PATCH(request: NextRequest) {
+  if (!isAuthorizedAdmin(request)) {
+    return NextResponse.json({ ok: false, error: 'Unauthorized: Admin passkey required' }, { status: 401 });
+  }
   try {
     const { id, status } = await request.json();
     if (!id || !status) {

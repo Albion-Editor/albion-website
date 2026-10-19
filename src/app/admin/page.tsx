@@ -1,12 +1,14 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import {
   Users,
   UserPlus,
   Activity,
   DollarSign,
   Eye,
+  EyeOff,
   MessageSquare,
   CheckCircle,
   RefreshCw,
@@ -14,6 +16,11 @@ import {
   ShieldCheck,
   Globe,
   Check,
+  Lock,
+  Key,
+  LogOut,
+  AlertCircle,
+  ArrowRight,
 } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -52,10 +59,17 @@ interface DashboardStats {
 }
 
 export default function AdminDashboardPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [feedback, setFeedback] = useState<FeedbackItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+
+  // Lock screen state
+  const [passkeyInput, setPasskeyInput] = useState('');
+  const [showPasskey, setShowPasskey] = useState(false);
+  const [authError, setAuthError] = useState('');
+  const [authSubmitting, setAuthSubmitting] = useState(false);
 
   const fetchData = async () => {
     setRefreshing(true);
@@ -65,9 +79,19 @@ export default function AdminDashboardPage() {
         fetch('/api/feedback'),
       ]);
 
+      if (statsRes.status === 401) {
+        setIsAuthenticated(false);
+        setLoading(false);
+        setRefreshing(false);
+        return;
+      }
+
       if (statsRes.ok) {
         const statsData = await statsRes.json();
-        if (statsData.ok) setStats(statsData);
+        if (statsData.ok) {
+          setStats(statsData);
+          setIsAuthenticated(true);
+        }
       }
 
       if (feedbackRes.ok) {
@@ -85,6 +109,46 @@ export default function AdminDashboardPage() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!passkeyInput.trim()) return;
+
+    setAuthSubmitting(true);
+    setAuthError('');
+
+    try {
+      const res = await fetch('/api/admin/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ passkey: passkeyInput.trim() }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.ok) {
+        setIsAuthenticated(true);
+        setPasskeyInput('');
+        fetchData();
+      } else {
+        setAuthError(data.error || 'Access denied: Invalid master passkey');
+      }
+    } catch {
+      setAuthError('Connection error. Please try again.');
+    } finally {
+      setAuthSubmitting(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/admin/auth', { method: 'DELETE' });
+    } catch {
+      // ignore
+    }
+    setIsAuthenticated(false);
+    setStats(null);
+    setFeedback([]);
+  };
 
   const markFeedbackRead = async (id: string) => {
     try {
@@ -105,10 +169,102 @@ export default function AdminDashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0F172A] text-slate-100 flex items-center justify-center">
+      <div className="min-h-screen bg-[#070C18] text-slate-100 flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <RefreshCw className="w-8 h-8 text-[#3B82F6] animate-spin" />
-          <p className="text-sm text-slate-400">Loading Albion Investor Intelligence...</p>
+          <p className="text-sm text-slate-400">Verifying Founder Security Credentials...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Cryptographic Lock Screen if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-[#070C18] text-slate-100 flex items-center justify-center px-4 relative overflow-hidden font-sans">
+        {/* Ambient Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
+
+        <div className="relative w-full max-w-md p-8 rounded-2xl bg-[#0F172A] border border-slate-800 shadow-2xl">
+          <div className="flex flex-col items-center text-center">
+            {/* Logo */}
+            <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4">
+              <ShieldCheck className="w-7 h-7 text-amber-400" />
+            </div>
+
+            <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+              Albion <span className="text-xs px-2 py-0.5 rounded bg-amber-400/10 text-amber-300 border border-amber-400/20 font-semibold uppercase">Executive</span>
+            </h1>
+            <p className="text-sm text-slate-400 mt-1">
+              Restricted Founder Telemetry & Investor Console
+            </p>
+          </div>
+
+          <form onSubmit={handleLogin} className="mt-8 space-y-5">
+            {authError && (
+              <div className="flex items-center gap-2 p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{authError}</span>
+              </div>
+            )}
+
+            <div className="space-y-2">
+              <label htmlFor="passkey" className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
+                Master Founder Passkey
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <Key className="w-4 h-4" />
+                </div>
+                <input
+                  id="passkey"
+                  type={showPasskey ? 'text' : 'password'}
+                  value={passkeyInput}
+                  onChange={(e) => setPasskeyInput(e.target.value)}
+                  placeholder="Enter secret passkey..."
+                  autoFocus
+                  required
+                  className="w-full pl-10 pr-10 py-2.5 rounded-lg bg-[#070C18] border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPasskey(!showPasskey)}
+                  className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-500 hover:text-slate-300 transition"
+                  aria-label={showPasskey ? 'Hide passkey' : 'Show passkey'}
+                >
+                  {showPasskey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={authSubmitting || !passkeyInput.trim()}
+              className="w-full py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white font-semibold text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20"
+            >
+              {authSubmitting ? (
+                <>
+                  <RefreshCw className="w-4 h-4 animate-spin" />
+                  <span>Authenticating...</span>
+                </>
+              ) : (
+                <>
+                  <Lock className="w-4 h-4" />
+                  <span>Unlock Executive Console</span>
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
+            </button>
+          </form>
+
+          <div className="mt-6 pt-6 border-t border-slate-800/80 text-center">
+            <a
+              href="/"
+              className="text-xs text-slate-500 hover:text-slate-300 transition inline-flex items-center gap-1"
+            >
+              ← Back to Albion Homepage
+            </a>
+          </div>
         </div>
       </div>
     );
@@ -155,6 +311,14 @@ export default function AdminDashboardPage() {
           >
             <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} />
             Refresh
+          </button>
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-xs font-medium text-red-400 transition"
+            title="Lock Executive Console"
+          >
+            <Lock className="w-3.5 h-3.5" />
+            <span>Lock</span>
           </button>
         </div>
       </div>
