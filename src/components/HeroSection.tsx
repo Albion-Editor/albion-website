@@ -24,7 +24,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative pt-[104px] pb-16 md:py-24 lg:py-28 overflow-hidden bg-bg-base"
+      className="relative pt-6 pb-16 md:pt-14 md:pb-24 lg:pt-16 lg:pb-28 overflow-hidden bg-bg-base"
       aria-label="Hero Overview"
     >
       {/* Background Signal Grid (Canvas 2D + CSS fallback) */}

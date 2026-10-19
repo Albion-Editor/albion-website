@@ -75,7 +75,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 h-[68px] bg-white border-b border-slate-200 transition-shadow duration-200 ${
+      className={`sticky top-0 z-40 h-[68px] bg-white border-b border-slate-200 transition-shadow duration-200 ${
         isScrolled ? "shadow-[0_2px_12px_rgba(15,23,42,0.06)]" : ""
       }`}
       role="banner"
