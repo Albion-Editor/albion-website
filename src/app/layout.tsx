@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/albion-logo.svg",
+        url: "/favicon.png",
         width: 1200,
         height: 630,
         alt: "Albion IDE — Sovereign AI Code Editor",
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     title: "Albion: The AI code editor that shows you the price first.",
     description: "Routes open frontier models with real-time token tracking and hard spending caps.",
     creator: "@albion_ide",
-    images: ["/albion-logo.svg"],
+    images: ["/favicon.png"],
   },
   robots: {
     index: true,

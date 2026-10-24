@@ -69,7 +69,7 @@ export function TrustEngineVisual() {
             </div>
             <div className="text-xs font-medium text-white mb-2">AI generates code edit</div>
             <div className="bg-[#070C18] p-2.5 rounded border border-hairline font-mono text-[11px] space-y-1">
-              <div className="text-slate-500">// tokenManager.ts</div>
+              <div className="text-slate-500">// agent edit pending verification</div>
               <div className="text-gold-400 bg-gold-500/10 px-1 py-0.5 rounded border border-gold-500/20">
                 + if (token.isExpired()) await refresh();
               </div>
@@ -95,7 +95,7 @@ export function TrustEngineVisual() {
                 <Lock className="w-3 h-3 text-gold-400 shrink-0" />
                 <span className="text-slate-300">.albion-shadow/</span>
               </div>
-              <div className="text-slate-500 pl-3">├── src/auth/tokenManager.ts</div>
+              <div className="text-slate-500 pl-3">├── pending-edit.ts</div>
               <div className="text-slate-500 pl-3">└── tsconfig.shadow.json</div>
             </div>
           </div>

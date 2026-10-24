@@ -29,13 +29,13 @@ export function AnnouncementBanner() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400" />
             </span>
-            <span>Paid Tier Coming Soon</span>
+            <span>Crypto Payments Live</span>
           </div>
 
           {/* Main Announcement Copy */}
           <p className="text-slate-200 font-medium">
             <span className="text-white font-semibold">Running low on free tokens?</span>{" "}
-            Paid plans & instant top-ups are launching shortly as Paystack & Lemon Squeezy merchant integrations finalize.
+            Pay securely with Crypto (USDT on Tron TRC20). Zero KYC required, non-custodial and instant in-app activation. Fiat cards (Paystack) coming soon.
           </p>
 
           {/* Jump Link to Pricing */}

@@ -41,7 +41,7 @@ export function HeroEditorVisual() {
           <div className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]/70" />
           <div className="w-2.5 h-2.5 rounded-full bg-[#10B981]/70" />
           <span className="ml-2 font-mono text-[11px] text-slate-400 font-medium">
-            albion-workspace — src/auth/tokenManager.ts
+            albion-workspace — Agent Mode
           </span>
         </div>
 
@@ -57,10 +57,10 @@ export function HeroEditorVisual() {
       <div className="h-8 bg-[#090E1A] border-b border-hairline flex items-center px-2 gap-1 text-xs font-mono">
         <div className="h-full px-3 bg-[#0A101D] border-r border-hairline text-text-main flex items-center gap-2 border-t-2 border-t-blue-500">
           <FileCode2 className="w-3.5 h-3.5 text-blue-400" />
-          <span>tokenManager.ts</span>
+          <span>agent-output.ts</span>
         </div>
         <div className="h-full px-3 text-muted hover:text-slate-300 flex items-center gap-2 transition-colors">
-          <span>albionTransport.ts</span>
+          <span>useStreamingChat.ts</span>
         </div>
       </div>
 
@@ -140,7 +140,7 @@ export function HeroEditorVisual() {
             <span className="font-bold text-slate-200">Albion: Starter</span>
           </div>
           <span className="text-slate-600">|</span>
-          <span className="text-slate-300">GLM: 45k/150k ({gaugePercent}%)</span>
+          <span className="text-slate-300">MiMo: 800k/4M ({gaugePercent}%)</span>
           <span className="text-slate-600">|</span>
           <span className="text-slate-300">Flash: 1.2M/8M</span>
         </div>

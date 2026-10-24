@@ -171,28 +171,28 @@ export function ProductSurfaces({ usdToNgn = 1332 }: ProductSurfacesProps) {
               <div className="mt-4 pt-3 border-t border-hairline space-y-2">
                 <div className="flex items-center justify-between text-[11px] text-muted">
                   <span className="font-semibold text-slate-200">Proxy Quota Enforcement:</span>
-                  <span className="text-emerald-400">Cap Reached = Free Chain Failover (No Overdraft)</span>
+                  <span className="text-emerald-400">Cap Reached → 402 Returned · Zero Overdraft</span>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[10px]">
                   <div className="p-2 rounded bg-surface border border-hairline">
-                    <div className="text-slate-400">Routine Flash</div>
-                    <div className="font-bold text-white mt-0.5">1.2M / 8.0M (15%)</div>
+                    <div className="text-slate-400">DeepSeek V4.1 Flash</div>
+                    <div className="font-bold text-white mt-0.5">1.2M / 4.0M (30%)</div>
                     <div className="w-full h-1 bg-slate-800 rounded-full mt-1.5 overflow-hidden">
-                      <div className="w-[15%] h-full bg-blue-500 rounded-full" />
+                      <div className="w-[30%] h-full bg-blue-500 rounded-full" />
                     </div>
                   </div>
                   <div className="p-2 rounded bg-surface border border-hairline">
-                    <div className="text-slate-400">Reasoning Pro</div>
-                    <div className="font-bold text-white mt-0.5">40k / 500k (8%)</div>
+                    <div className="text-slate-400">MiMo v2.6 Flash</div>
+                    <div className="font-bold text-white mt-0.5">800k / 4.0M (20%)</div>
                     <div className="w-full h-1 bg-slate-800 rounded-full mt-1.5 overflow-hidden">
-                      <div className="w-[8%] h-full bg-gold-400 rounded-full" />
+                      <div className="w-[20%] h-full bg-gold-400 rounded-full" />
                     </div>
                   </div>
                   <div className="p-2 rounded bg-surface border border-hairline col-span-2 sm:col-span-1">
-                    <div className="text-slate-400">UI Generator (GLM)</div>
-                    <div className="font-bold text-white mt-0.5">45k / 150k (30%)</div>
+                    <div className="text-slate-400">Qwen 3 Coder 30B</div>
+                    <div className="font-bold text-white mt-0.5">45k / 100k (45%)</div>
                     <div className="w-full h-1 bg-slate-800 rounded-full mt-1.5 overflow-hidden">
-                      <div className="w-[30%] h-full bg-emerald-400 rounded-full" />
+                      <div className="w-[45%] h-full bg-emerald-400 rounded-full" />
                     </div>
                   </div>
                 </div>
@@ -211,7 +211,7 @@ export function ProductSurfaces({ usdToNgn = 1332 }: ProductSurfacesProps) {
               Hard proxy caps and real shell access.
             </h2>
             <p className="text-muted text-base leading-relaxed mb-6">
-              Caps are strictly enforced on the proxy, not in cosmetic client UI. When you reach your monthly allocation, Albion instantly pivots to the multi-key free failover chain rather than locking your editor or charging credit card overdrafts.
+              Caps are strictly enforced on the proxy, not in cosmetic client UI. When you reach your monthly allocation, Albion returns HTTP 402 — no overdraft, no surprise charge. Your editor stays open and your wallet stays safe.
             </p>
             <div className="space-y-3 text-sm text-slate-300 font-medium">
               <div className="flex items-center gap-2.5">
@@ -224,7 +224,7 @@ export function ProductSurfaces({ usdToNgn = 1332 }: ProductSurfacesProps) {
               </div>
               <div className="flex items-center gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Automatic round-robin failover to free frontier models</span>
+                <span>Manual model selection — pick DeepSeek, Qwen, MiMo or Grok per session</span>
               </div>
             </div>
           </div>

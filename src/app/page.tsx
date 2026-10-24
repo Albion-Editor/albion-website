@@ -1,5 +1,4 @@
 import React from "react";
-import { AnnouncementBanner } from "@/components/AnnouncementBanner";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { ProductSurfaces } from "@/components/ProductSurfaces";
@@ -17,9 +16,6 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-bg-base text-text-main flex flex-col font-sans selection:bg-blue-500 selection:text-white">
-      {/* Top Announcement Banner (Easily removable when paid tiers go live) */}
-      <AnnouncementBanner />
-
       {/* Global Navbar */}
       <Navbar />
 

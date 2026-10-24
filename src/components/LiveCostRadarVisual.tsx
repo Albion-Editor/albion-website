@@ -9,7 +9,7 @@ interface LiveCostRadarVisualProps {
 
 export function LiveCostRadarVisual({ usdToNgn = 1332 }: LiveCostRadarVisualProps) {
   const [prompt, setPrompt] = useState(
-    "Write an async pipeline that validates incoming webhook signatures from Paystack and refreshes expired user sessions."
+    "Write an async pipeline that validates incoming webhook signatures from NOWPayments and refreshes expired user sessions."
   );
   const [hasImage, setHasImage] = useState(false);
 
@@ -22,14 +22,14 @@ export function LiveCostRadarVisual({ usdToNgn = 1332 }: LiveCostRadarVisualProp
   // Routing rule: image -> Qwen Vision, otherwise DeepSeek V4 Flash
   const activeModel = hasImage
     ? {
-        name: "Qwen3.6-35B-A3B (Vision)",
+        name: "DeepSeek V4.1 Flash (Vision)",
         provider: "Native Multimodal",
         costPer1MTokens: 0.20,
         badge: "Image Detected",
       }
     : {
         name: "DeepSeek V4 Flash",
-        provider: "Albion Smart Auto-Router",
+        provider: "DeepInfra · DeepSeek V4.1 Flash",
         costPer1MTokens: 0.14,
         badge: "Routine Fast Edit",
       };
@@ -49,7 +49,7 @@ export function LiveCostRadarVisual({ usdToNgn = 1332 }: LiveCostRadarVisualProp
           </span>
         </div>
         <div className="font-mono text-[11px] text-muted">
-          Type below or toggle screenshot to observe auto-routing
+          Type below or toggle screenshot to see live cost estimate
         </div>
       </div>
 
@@ -135,7 +135,7 @@ export function LiveCostRadarVisual({ usdToNgn = 1332 }: LiveCostRadarVisualProp
           {/* Metric 2: Active Routed Model */}
           <div className="flex flex-col">
             <span className="font-mono text-[11px] uppercase tracking-wider text-muted">
-              Auto-Routed Model
+              Selected Model
             </span>
             <div className="mt-1 flex items-center gap-1.5">
               <span className="font-mono text-sm font-bold text-blue-400">
@@ -202,7 +202,7 @@ export function LiveCostRadarVisual({ usdToNgn = 1332 }: LiveCostRadarVisualProp
             >
               <div className="flex items-center gap-2">
                 <span className={`w-1.5 h-1.5 rounded-full ${hasImage ? "bg-blue-400" : "bg-slate-500"}`} />
-                <span>Qwen3.6-35B-A3B (Vision)</span>
+                <span>DeepSeek V4.1 Flash (Vision)</span>
               </div>
               <span className="text-gold-400 font-medium">
                 ${((tokenCount / 1_000_000) * 0.20).toFixed(5)}
