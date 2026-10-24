@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
-const GITHUB_REPO = 'Marcdev001/ALBION';
+const GITHUB_REPO = 'Albion-Editor/ALBION';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 /**
